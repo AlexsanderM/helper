@@ -1,0 +1,21 @@
+
+<%= form_for :article, url: articles_path do |f| %>
+<!-- url передан хелпер articles_path Хелпер articles_path
+сообщает Rails указать форме на URI Pattern, связанный с
+префиксом articles; и форма пошлет (по умолчанию) запрос
+POST на этот маршрут. Он связан с экшном create текущего
+контроллера, ArticlesController.-->
+
+
+<p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :text %><br>
+    <%= f.text_area :text %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
