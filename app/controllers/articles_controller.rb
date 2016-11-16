@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+
   def index
     @articles = Article.all
     # отображения списка всех наших статей
@@ -11,6 +12,10 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    @article = Article.new
+    # Причина, по которой мы добавили @article = Article.new в ArticlesController,
+    # в том, что в противном случае @article будет nil во вьюхе, и вызов
+    # @article.errors.any? вызовет ошибку.
   end
 
   def create
@@ -25,10 +30,20 @@ class ArticlesController < ApplicationController
     # params[:article] содержит интересующие нас атрибуты
     @article = Article.new(article_params)
 
-    @article.save
+    if @article.save
+      # Если @article.save не удастся, нам нужно снова показать форму пользователю
+      redirect_to @article
+    else
+      render 'new'
+      # render использован, чтобы объект @article был передан назад в шаблон new,
+      # когда он будет отрендерен. Этот рендеринг выполняется в рамках того же запроса,
+      # что и отправка формы, в то время как redirect_to сообщает браузеру выполнить другой запрос.
+    end
+
+    #@article.save
     # ответственен за сохранение модели в базу
     # @article.save возвращает булево значение, показывающее, была ли сохранена модель, или нет.
-    redirect_to @article
+    #redirect_to @article
   end
 
 
