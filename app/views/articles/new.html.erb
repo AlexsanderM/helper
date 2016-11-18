@@ -7,13 +7,17 @@ POST на этот маршрут. Он связан с экшном create те
 контроллера, ArticlesController.-->
 
 <% if @article.errors.any? %>
+<!-- проверяем, имеются ли какие-либо ошибки  -->
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@article.errors.count, "error") %> prohibited
-        this article from being saved:
+        <%= pluralize(@article.errors.count, "error") %>
+        <!-- pluralize это хелпер rails, принимающий число и строку как аргументы.
+        Если число больше одного, строка будет автоматически склонено во множественном числе. -->
+        prohibited this article from being saved:
       </h2>
       <ul>
         <% @article.errors.full_messages.each do |msg| %>
+        <!-- показываем список всех ошибок с помощью -->
           <li><%= msg %></li>
         <% end %>
       </ul>
