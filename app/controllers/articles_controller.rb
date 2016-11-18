@@ -18,6 +18,10 @@ class ArticlesController < ApplicationController
     # @article.errors.any? вызовет ошибку.
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
   def create
     # render plain: params[:article].inspect
     # метод render принимает очень простой хэш с ключом :plain и значением
@@ -44,6 +48,21 @@ class ArticlesController < ApplicationController
     # ответственен за сохранение модели в базу
     # @article.save возвращает булево значение, показывающее, была ли сохранена модель, или нет.
     #redirect_to @article
+  end
+
+  def update
+    # update, используется, когда хотим обновить запись, которая уже существует, и он
+    # принимает хэш, содержащий атрибуты, которые мы хотим обновить.
+    @article = Article.find(params[:id])
+
+    if @article.update(article_params)
+      redirect_to @article
+      # redirect_to сообщает браузеру выполнить другой запрос
+    else
+      render 'edit'
+      # Метод render использован, чтобы объект @article был передан назад в шаблон new, когда он будет отрендерен
+      # Этот рендеринг выполняется в рамках того же запроса, что и отправка формы
+    end
   end
 
 
