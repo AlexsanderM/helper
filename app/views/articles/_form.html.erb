@@ -1,0 +1,34 @@
+<%= form_for :article, url: article_path(@article), method: :patch do |f| %>
+  <!-- Опция method: :patch говорит Rails, что мы хотим, чтобы эта форма была
+  отправлена с помощью PATCH, метода HTTP, от которого ожидается, что он
+  используется для обновления ресурсов в соответствии с протоколом REST. -->
+
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@article.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :text %><br>
+    <%= f.text_area :text %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
