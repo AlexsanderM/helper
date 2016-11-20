@@ -1,28 +1,12 @@
-== README
+rails generate controller Welcome index
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+rails generate controller Articles
 
-Things you may want to cover:
+rails generate model Article title:string text:text
 
-* Ruby version
+rails db:migrate
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+rails generate model Comment commenter:string body:text article:references
+# :references  это специальный тип данных для моделей. Он создает новый
+# столбец в вашей базе данных с именем представленной модели с добавленным _id,
+# который может содержать числовые значения
