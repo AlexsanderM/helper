@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
   root 'main#index'
 
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
+  # Это создаст comments как вложенный ресурс в articles. Это другая сторона
+  # захвата иерархических отношений, существующих между статьями и комментариями
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
