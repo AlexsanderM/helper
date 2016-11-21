@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :comments
+    # Это создаст comments как вложенный ресурс в articles.
   end
   # Это создаст comments как вложенный ресурс в articles. Это другая сторона
   # захвата иерархических отношений, существующих между статьями и комментариями

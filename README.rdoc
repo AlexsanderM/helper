@@ -10,3 +10,5 @@ rails generate model Comment commenter:string body:text article:references <br>
 # :references  это специальный тип данных для моделей. Он создает новый
 # столбец в вашей базе данных с именем представленной модели с добавленным _id,
 # который может содержать числовые значения
+
+rails generate controller Comments
