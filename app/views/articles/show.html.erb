@@ -9,17 +9,12 @@
 </p>
 
 <h2>Comments</h2>
-<% @article.comments.each do |comment| %>
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
-<% end %>
+<%= render @article.comments %>
+ <!-- Теперь это отрендерит партиал app/views/comments/_comment.html.erb
+ по разу для каждого комментария в коллекции @article.comments. Так как
+ метод render перебирает коллекцию @article.comments, он назначает каждый
+ комментарий локальной переменной с именем, как у партиала, в нашем случае
+ comment, которая нам доступна в партиале для отображения-->
 
 <h2>Add a comment:</h2>
 <%= form_for([@article, @article.comments.build]) do |f| %>
